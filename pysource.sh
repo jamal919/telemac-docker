@@ -1,0 +1,9 @@
+export HOMETEL=/opt/telemac-mascaret-v8p2r1
+export PATH=$HOMETEL/scripts/python3:.:$PATH
+export SYSTELCFG=$HOMETEL/configs/systel.cfg
+export USETELCFG=gfortranMPI
+export SOURCEFILE=$HOMETEL/configs/pysource.sh
+export PYTHONUNBUFFERED='true'
+export PYTHONPATH=$HOMETEL/scripts/python3:$PYTHONPATH
+export LD_LIBRARY_PATH=$HOMETEL/builds/$USETELCFG/wrap_api/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$HOMETEL/builds/$USETELCFG/wrap_api/lib:$PYTHONPATH
