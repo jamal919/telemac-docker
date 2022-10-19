@@ -1,3 +1,12 @@
-To install : docker pull jamal919/telemac:v8p2r1
-To run the docker : docker run -it --rm `pwd`:/mnt jamal919/telemac:v8p2r1
-To run the model : telemac2d.py <casefile>.cas --ncsize=<#cores>
+# About
+This is a dockerized version of Telemac - http://www.opentelemac.org, compiled in ubuntu 20.04 with openmpi and hdf5, for Windows, Linux, and Mac (Both intel and M1).
+
+# How to use
+- To install : docker pull jamal919/telemac:<version> ; currently available <version>: v8p2r1, latest
+- To run the docker in interactive mode
+    - Linux/Unix: docker run -it --rm `pwd`:/mnt jamal919/telemac:<version>
+    - Windows Powershell: docker run -it --rm ${PWD}:/mnt jamal919/telemac:<version>
+- To run the model inside interactive mode: telemac2d.py <casefile>.cas --ncsize=<#cores>
+- To run the model directly: telemac2d.py <casefile>.cas [--ncsize=<#cores>]
+    - Linux/Unix: docker run --rm `pwd`:/mnt jamal919/telemac:<version> telemac2d.py <casefile>.cas [--ncsize=<#cores>]
+    - Windows Powershell: docker run --rm ${PWD}:/mnt jamal919/telemac:<version> telemac2d.py <casefile>.cas [--ncsize=<#cores>]
