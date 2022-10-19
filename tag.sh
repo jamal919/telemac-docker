@@ -1,9 +1,14 @@
 docker login
 
-docker build -t telemac:v8p2r1 .
-docker tag telemac:v8p2r1 jamal919/telemac:v8p2r1
-docker push jamal919/telemac:v8p2r1
+docker run --privileged --rm docker/binfmt:a7996909642ee92942dcd6cff44b9b95f08dad64
+# docker buildx create --use
 
-docker build -t telemac:latest .
-docker tag telemac:latest jamal919/telemac:latest
-docker push jamal919/telemac:latest
+# v8p2r1
+docker buildx build --platform linux/amd64,linux/arm64 --push -t jamal919/telemac:v8p2r1 .
+docker buildx build --load -t jamal919/telemac:v8p2r1 .
+
+# Latest build
+docker buildx build --platform linux/amd64,linux/arm64 --push -t jamal919/telemac:latest .
+docker buildx build --load -t jamal919/telemac:latest .
+
+# docker buildx rm

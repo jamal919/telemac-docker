@@ -1,5 +1,14 @@
-FROM ubuntu:20.04
+# Build platform selection
+# $TARGETARCH, $TARGETOS, ${TARGETPLATFORM}
+FROM ubuntu:20.04 as ubuntu_amd64
+ENV HDF5HOME=/usr/lib/x86_64-linux-gnu/hdf5/serial
 
+FROM ubuntu:20.04 as ubuntu_arm64
+ENV HDF5HOME=/usr/lib/aarch64-linux-gnu/hdf5/serial
+
+FROM ubuntu_${TARGETARCH}
+
+# Main
 ENV TZ=Europe/Paris
 RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
 
@@ -14,7 +23,7 @@ RUN cd /tmp \
     && wget -c http://files.salome-platform.org/Salome/other/med-4.1.0.tar.gz \
     && tar -xvzf med-4.1.0.tar.gz \
     && cd med-4.1.0 \
-    && ./configure \
+    && ./configure --with-hdf5-bin=/usr/bin \
     && make \
     && make install \
     && rm -rf /tmp/med-4.1.0.tar.gz /tmp/med-4.1.0
